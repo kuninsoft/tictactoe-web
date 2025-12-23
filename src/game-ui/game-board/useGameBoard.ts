@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import type GameBoard from "../../game-manager/game-board";
 import type { CellType } from "../../game-manager/enums";
+import "../styles/game-board.scss";
 
 export function useGameBoard(gameBoard: GameBoard) {
-    const [board, setBoard] = useState<CellType[][]>([
-        [null, null, null],
-        [null, null, null],
-        [null, null, null]
-    ]);
+    const [board, setBoard] = useState<CellType[][]>([[null, null, null],
+                                                      [null, null, null],
+                                                      [null, null, null]]);
 
     useEffect(() => {
         return gameBoard.subscribe((change) => {

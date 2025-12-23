@@ -1,0 +1,27 @@
+.game-state {
+    grid-area: s;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+
+    @media screen and (min-width: 768px) {
+        place-self: center;
+
+        button {
+            transition-duration: 100ms;
+
+            &:hover {
+                cursor: pointer;
+                scale: 1.1;
+            }
+        }
+    }
+
+    button {
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+    }
+}

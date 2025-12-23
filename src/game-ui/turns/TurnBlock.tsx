@@ -1,4 +1,5 @@
 import type { CellType } from "../../game-manager/enums";
+import "../styles/game-turns.scss";
 
 interface TurnBlockProps {
     title: string;
@@ -10,7 +11,6 @@ export default function TurnBlock({ title, turnType }: TurnBlockProps) {
         <div className="turn-block">
             <span className="turn-title">{title}</span> 
 
-            {/* TODO: Add image based on turn type */}
             <div className="turn">
                 { turnType &&
                   <>

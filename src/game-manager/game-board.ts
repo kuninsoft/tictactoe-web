@@ -14,16 +14,6 @@ export default class GameBoard {
         this.emit({ type: 'cell', row: row, column: column, value: cell });
     }
 
-    reset() {
-        this.board = [
-            [ null, null, null ],
-            [ null, null, null ],
-            [ null, null, null ]
-        ];
-
-        this.emit({ type: 'reset', board: structuredClone(this.board) });
-    }
-
     subscribe(listener: (change: BoardChange) => void): () => void {
         this.listeners.add(listener);
         return () => this.listeners.delete(listener);

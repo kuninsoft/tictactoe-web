@@ -1,0 +1,36 @@
+header {
+    h1 {
+        text-align: center;
+        font-weight: 100;
+    }
+
+    padding: 10px;
+}
+
+main {
+    display: grid;
+    grid-template-areas: 
+        "g g g"
+        "t . s";
+    
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 3fr 1fr;
+
+    @media screen and (min-width: 768px) {
+        grid-template-areas: 
+        "t g"
+        ". g"
+        "s g";
+
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 1fr 1fr 1fr;
+
+        max-width: 700px;
+        margin: 0 auto;
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+}
