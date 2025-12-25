@@ -1,73 +1,59 @@
-# React + TypeScript + Vite
+# Tic-Tac-Toe Web Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is the **web frontend** for the Tic-Tac-Toe application.  
+It provides a real-time user interface built with **React** and communicates with the backend via **SignalR**.
 
-Currently, two official plugins are available:
+The frontend is intentionally simple and focused on UI concerns, delegating all game logic to the backend.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Purpose
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The frontend is responsible for:
 
-## Expanding the ESLint configuration
+- Rendering the game board and UI
+- Managing client-side state and interactions
+- Establishing and maintaining a SignalR connection
+- Reacting to realtime game events
+- Sending user actions to the backend
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The frontend does **not** contain game rules or validation logic.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Realtime Communication
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Connects to the BFF using SignalR
+- Receives semantic game events:
+  - `PlayerJoined`
+  - `GameStarted`
+  - `MoveMade`
+  - `GameEnd`
+- Sends user actions such as:
+  - `MakeMove`
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## State Management
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Uses React hooks for local state
+- Separates game state, connection state, and UI state
+- Designed for predictable, event-driven updates
+
+---
+
+## Configuration
+
+Runtime configuration includes:
+
+- BFF base URL
+- Environment-specific settings
+
+---
+
+## Technology Stack
+
+- React
+- TypeScript
+- SignalR client
+
